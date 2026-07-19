@@ -1,29 +1,31 @@
 import tkinter as tk
 
 def generate_ticket_title():
-    # Get the values from the input fields
+    # Collect input values
     node_name = node_name_entry.get()
     alarm_label = alarm_entry.get()
 
-    # Generate the ticket title
+    # Ticket title generation
     ticket_title = f"{(combined_tech_final)} {node_name}: {alarm_label}"
-    ticket_title_label.config(text=ticket_title)
+    #ticket_title_label.config(text=ticket_title)
+    print(ticket_title)
 
-# Create the main window
+# Main Window
 root = tk.Tk()
 root.title("Ticket Titler")
 root.geometry("300x600")
 
+
 ### Create the input fields
 
-#Dropdown for ticket severity
-ticket_type_var = tk.StringVar(value="Severity")
-ticket_type_menu = tk.OptionMenu(root, ticket_type_var, "Service Impacting", "Service Degraded", "Non-Service Impacting")
-ticket_type_menu.pack(padx=10, pady=10)
+# Dropdown for ticket severity
+ticket_severity_var = tk.StringVar(value="Severity")
+ticket_severity_menu = tk.OptionMenu(root, ticket_severity_var, "Service Impacting", "Service Degraded", "Non-Service Impacting")
+ticket_severity_menu.pack(padx=10, pady=10)
 
 
 
-#Checkboxes for technology selection
+# Checkboxes for technology selection
 tech_var1 = tk.BooleanVar()
 tech_var2 = tk.BooleanVar()
 tech_var3 = tk.BooleanVar()
@@ -45,17 +47,17 @@ combined_tech = []
 combined_tech_final = print(combined_tech)
 
 if tech_var1.get() == True:
-    combined_tech.append("5G")
+    combined_tech.append(tech_checkbox1.cget("text"))
 if tech_var2.get() == True:
-    combined_tech.append("2100")
+    combined_tech.append(tech_checkbox2.cget("text"))
 if tech_var3.get() == True:
-    combined_tech.append("1900")
+    combined_tech.append(tech_checkbox3.cget("text"))
 if tech_var4.get() == True:
-    combined_tech.append("700")
+    combined_tech.append(tech_checkbox4.cget("text"))
 if tech_var5.get() == True:
-    combined_tech.append("600")
+    combined_tech.append(tech_checkbox5.cget("text"))
 
-#Checkboxes for technology selection
+# Checkboxes for technology selection
 node_name_label = tk.Label(root, text="Node Name:")
 node_name_label.pack()
 node_name_entry = tk.Entry(root)
@@ -66,13 +68,16 @@ alarm_label.pack()
 alarm_entry = tk.Entry(root)
 alarm_entry.pack()
 
-# Create the Generate button
+### Button and display for ticket title generation
+
+# Generate button
 generate_button = tk.Button(root, text="Generate Ticket Title", command=generate_ticket_title)
 generate_button.pack()
 
-# Create the label to display the generated ticket title
+# Ticket title display
 ticket_title_label = tk.Label(root, text="")
 ticket_title_label.pack()
 
-# Start the main event loop
+
 root.mainloop()
+

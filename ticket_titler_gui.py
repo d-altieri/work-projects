@@ -43,6 +43,13 @@ def generate_ticket_title():
             sector = "All Sectors"
         break
 
+    while True:
+        if alarm_var.get() == "Custom":
+            alarm_label = alarm_entry.get()
+        else:
+            alarm_label = alarm_var.get()
+        break
+
     # Ticket title generation
     ticket_title = f"- {severity} - {brand} - {node_name} - {sector} - {' '.join(technologies)} {condition} - {alarm_label}"
     ticket_title_listbox.insert(tk.ACTIVE, ticket_title)
@@ -107,6 +114,9 @@ sector_menu.pack()
 # Prompt for alarm signature
 alarm_label = tk.Label(root, text="Alarm:")
 alarm_label.pack(padx=0, pady=5)
+alarm_var = tk.StringVar(root, value="Custom")
+alarm_menu = tk.OptionMenu(root, alarm_var, "Custom", "Input Power Failure", "Heartbeat Failure", "No connection to unit", "NE3SWS AGENT NOT RESPONDING TO REQUESTS", "Link Failure")
+alarm_menu.pack()
 alarm_entry = tk.Entry(root, width=30)
 alarm_entry.pack()
 

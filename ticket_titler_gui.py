@@ -40,7 +40,7 @@ def generate_ticket_title():
         break
 
     # Ticket title generation
-    ticket_title = f"- {severity} - {brand} - {sector} - {' '.join(technologies)} - {node_name} - {condition} - {alarm_label}"
+    ticket_title = f"- {severity} - {brand} - {node_name} - {sector} - {' '.join(technologies)} {condition} - {alarm_label}"
     ticket_title_label.config(text=ticket_title)
     print(ticket_title)
 

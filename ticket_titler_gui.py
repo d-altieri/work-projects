@@ -18,6 +18,10 @@ def generate_ticket_title():
             technologies.append(tech_checkbox4.cget("text"))
         if tech_var5.get() == True:
             technologies.append(tech_checkbox5.cget("text"))
+        if tech_var6.get() == True:
+            technologies.append(tech_checkbox6.cget("text"))
+        if tech_var7.get() == True:
+            technologies.append(tech_checkbox7.cget("text"))
         break
 
     while True:
@@ -41,14 +45,14 @@ def generate_ticket_title():
 
     # Ticket title generation
     ticket_title = f"- {severity} - {brand} - {node_name} - {sector} - {' '.join(technologies)} {condition} - {alarm_label}"
-    ticket_title_label.config(text=ticket_title)
+    ticket_title_listbox.insert(tk.ACTIVE, ticket_title)
     print(ticket_title)
 
 
 # Main Window
 root = tk.Tk()
 root.title("Ticket Titler")
-root.geometry("300x600")
+root.geometry("400x800")
 
 
 ### Input fields
@@ -65,16 +69,22 @@ tech_var2 = tk.BooleanVar()
 tech_var3 = tk.BooleanVar()
 tech_var4 = tk.BooleanVar()
 tech_var5 = tk.BooleanVar()
+tech_var6 = tk.BooleanVar()
+tech_var7 = tk.BooleanVar()
 tech_checkbox1 = tk.Checkbutton(root, text="5G", variable=tech_var1)
-tech_checkbox2 = tk.Checkbutton(root, text="2100", variable=tech_var2)
-tech_checkbox3 = tk.Checkbutton(root, text="1900", variable=tech_var3)
-tech_checkbox4 = tk.Checkbutton(root, text="700", variable=tech_var4)
-tech_checkbox5 = tk.Checkbutton(root, text="600", variable=tech_var5)
-tech_checkbox1.pack(anchor='w',padx=80)
-tech_checkbox2.pack(anchor='w',padx=80)
-tech_checkbox3.pack(anchor='w',padx=80)
-tech_checkbox4.pack(anchor='e',padx=80)
-tech_checkbox5.pack(anchor='e',padx=80)
+tech_checkbox2 = tk.Checkbutton(root, text="LTE", variable=tech_var2)
+tech_checkbox3 = tk.Checkbutton(root, text="2500", variable=tech_var3)
+tech_checkbox4 = tk.Checkbutton(root, text="2100", variable=tech_var4)
+tech_checkbox5 = tk.Checkbutton(root, text="1900", variable=tech_var5)
+tech_checkbox6 = tk.Checkbutton(root, text="700", variable=tech_var6)
+tech_checkbox7 = tk.Checkbutton(root, text="600", variable=tech_var7)
+tech_checkbox1.pack(anchor='w',padx=140)
+tech_checkbox2.pack(anchor='w',padx=140)
+tech_checkbox3.pack(anchor='e',padx=140)
+tech_checkbox4.pack(anchor='e',padx=140)
+tech_checkbox5.pack(anchor='e',padx=140)
+tech_checkbox6.pack(anchor='e',padx=140)
+tech_checkbox7.pack(anchor='e',padx=140)
 
 # Brand of equipment selection
 brand_var = tk.StringVar(root, value="Ericsson")
@@ -108,8 +118,8 @@ generate_button = tk.Button(root, text="Generate Ticket Title", command=generate
 generate_button.pack(padx=60, pady=60)
 
 # Ticket title display
-ticket_title_label = tk.Label(root, text="")
-ticket_title_label.pack()
+ticket_title_listbox = tk.Listbox(root, width=80, height=10)
+ticket_title_listbox.pack()
 
 
 root.mainloop()
